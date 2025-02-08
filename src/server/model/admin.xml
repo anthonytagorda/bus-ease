@@ -1,0 +1,7 @@
+<admins>
+    <admin id="1" type="admin">
+        <username>admin</username>
+        <name>Admin</name>
+        <password>123</password>
+    </admin>
+</admins>
