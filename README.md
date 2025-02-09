@@ -1,6 +1,9 @@
-# Bus Ease - Java Bus Ticketing System
+# Bus Ease 🚌🎫 - Java Bus Ticketing System 
 
-#### Programmer: TAGORDA, Anthony I.
+### Logo 
+<img src=src/public/images/bus_ease_logo.png>
+
+### Programmer: [Anthony I. Tagorda](https://github.com/anthonytagorda)
 
 ## Overview
 Java-based bus ticketing system that uses socket programming to enable
@@ -17,9 +20,9 @@ book tickets, and manage reservations seamlessly.
 - **Admin Dashboard:** Manage bus schedules and monitor ticket sales.
 
 ## Tech Stack
-- **Programming Language:** Java
+- **Programming Language:** Java 
 - **Libraries:** Java Sockets
-- **Database:** JSON
+- **Database:** XML
 - **GUI Framework:** Java Swing
 
 ## Get Started
@@ -29,6 +32,14 @@ book tickets, and manage reservations seamlessly.
 3. Compile and run the operator class.
 4. Compiler and run the conductor class.
 5. Compile and run the client class last.
+
+## ERD Diagram
+
+## Modules
+- Admin Module
+- User Module
+- Conductor Module
+- Operator Module
 
 ## Future Enhancements
 - Integration with payment gateways.
