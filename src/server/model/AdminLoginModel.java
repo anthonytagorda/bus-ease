@@ -17,7 +17,7 @@ public class AdminLoginModel {
 	 public boolean isValidCredentials(String username, char[] password) {
 		  try {
 				ClassLoader classLoader = getClass().getClassLoader();
-				InputStream inputStream = classLoader.getResourceAsStream("server/model/admin.xml");
+				InputStream inputStream = classLoader.getResourceAsStream("server/model/users/admin.xml");
 
 				// Check if the InputStream is null
 				if (inputStream == null) {

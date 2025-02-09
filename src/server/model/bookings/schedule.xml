@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schedules>
+    <schedule>
+        <plate>YAB-9910</plate>
+        <type>Provincial</type>
+        <departureTime>9:00 AM</departureTime>
+        <origin>Baguio</origin>
+        <eta>11:00 AM</eta>
+        <destination>Dagupan</destination>
+        <slots>50</slots>
+    </schedule>
+    <schedule>
+        <plate>YAB-9920</plate>
+        <type>Premium P2P</type>
+        <departureTime>9:00 AM</departureTime>
+        <origin>Baguio</origin>
+        <eta>03:00 PM</eta>
+        <destination>Cubao</destination>
+        <slots>50</slots>
+    </schedule>
+</schedules>
