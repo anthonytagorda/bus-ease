@@ -1,4 +1,4 @@
-package server.controller;
+package server.controller.holders;
 
 import server.controller.handlers.ServerHandler;
 

@@ -1,7 +1,8 @@
 package server.controller;
 
 import server.controller.handlers.ServerHandler;
-import server.controller.handlers.ServerHolder;
+import server.controller.holders.ServerHolder;
+import server.controller.holders.Servant;
 import server.view.AdminLoginView;
 import server.view.ManageUsersView;
 import server.view.ServerMainView;

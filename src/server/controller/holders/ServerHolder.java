@@ -1,4 +1,4 @@
-package server.controller.handlers;
+package server.controller.holders;
 
 import java.net.ServerSocket;
 
