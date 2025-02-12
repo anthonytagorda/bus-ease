@@ -31,13 +31,13 @@ book tickets, and manage reservations seamlessly.
 2. Compile and run the server class.
 3. Compile and run the operator class.
 4. Compiler and run the conductor class.
-5. Compile and run the client class last.
+5. Compile and run the passenger class last.
 
 ## ERD Diagram
 
 ## Modules
 - Admin Module
-- User Module
+- Passenger Module
 - Conductor Module
 - Operator Module
 
