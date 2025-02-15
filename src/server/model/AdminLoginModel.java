@@ -28,8 +28,7 @@ public class AdminLoginModel {
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 				Document doc = dBuilder.parse(inputStream);
-				doc.getDocumentElement().normalize();
-
+							doc.getDocumentElement().normalize();
 				NodeList adminNodes = doc.getElementsByTagName("admin");
 				for (int i = 0; i < adminNodes.getLength(); i++) {
 					 Node node = adminNodes.item(i);
