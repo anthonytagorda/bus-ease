@@ -13,14 +13,14 @@ public class AdminLoginController {
 		  this.adminLoginModel = adminLoginModel;
 
 		  // Admin Login Action Listeners
-		  this.adminLoginView.addLoginButtonListener(e -> login());
+		  this.adminLoginView.addLoginButtonListener(login -> login());
 	 }
 
 	 private void login() {
 		  String username = adminLoginView.getUsername();
 		  char[] password = adminLoginView.getPassword();
 
-		  if ( adminLoginModel.isValidCredentials(username, password)) {
+		  if (adminLoginModel.isValidCredentials(username, password)) {
 				// Successful Login
 				ServerMainView serverMainView = new ServerMainView();
 				new ServerMainController(serverMainView);

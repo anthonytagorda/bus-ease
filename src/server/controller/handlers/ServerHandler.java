@@ -15,7 +15,7 @@ public class ServerHandler {
 	 private static final int PORT = 6969;
 	 private static boolean isServerRunning =	false;
 
-	 private static final List<PrintWriter> clientWriters = new ArrayList<PrintWriter>();
+	 private static final List<PrintWriter> clientWriters = new ArrayList<>();
 	 private static final List<ClientHandler> connectedClients = new ArrayList<>();
 
 	 public static void startServer() {
@@ -40,7 +40,7 @@ public class ServerHandler {
 
 					 System.out.printf("Client connected: %s%n", clientSocket);
 
-					 // Create a PrintWriter for the client and add it to the list
+					 // Create a PrintWriter for the client and add it to the	 list
 					 PrintWriter clientWriter = new PrintWriter(clientSocket.getOutputStream(), true);
 					 clientWriters.add(clientWriter);
 				}
@@ -62,7 +62,7 @@ public class ServerHandler {
 					 writer.println("Server has been shutdown.");
 				}
 
-				// Set the serverShutdown flag for each ClientHandler
+				// Set the serverShutdown flag for each PassengerHandler
 				for(ClientHandler clientHandler : connectedClients) {
 					 clientHandler.setServerShutdown(true);
 				}

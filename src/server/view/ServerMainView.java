@@ -119,7 +119,7 @@ public class ServerMainView extends JFrame {
 		  logoutButton.setBackground(Color.decode("#E7EBF7"));
 		  add(leftPanel);
 
-		  // Main Panel Configuration
+		  // Main Panel
 		  JPanel mainPanel = new JPanel();
 		  mainPanel.setLayout(null);
 		  mainPanel.setBorder(primaryBorder);
@@ -177,6 +177,7 @@ public class ServerMainView extends JFrame {
 		  schedulesLabel.setFont(new Font("Roboto", Font.BOLD, 16));
 		  schedulesPanel.add(schedulesLabel);
 
+		  // Departure Table
 		  String[] columnNames = {"Plate #", "Bus Type", "Departure Time", "Origin", "ETA", "Destination", "Slots"};
 		  Object[][] data = ScheduleModel.loadSchedules("src/server/model/bookings/schedule.xml");
 		  schedulesTable = new JTable(data, columnNames) {
@@ -191,9 +192,9 @@ public class ServerMainView extends JFrame {
 				schedulesTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		  }
 		  schedulesTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-		  schedulesTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-		  schedulesTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-		  schedulesTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+		  schedulesTable.getColumnModel().getColumn(1).setPreferredWidth(120);
+		  schedulesTable.getColumnModel().getColumn(2).setPreferredWidth(130);
+		  schedulesTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 		  schedulesTable.getColumnModel().getColumn(4).setPreferredWidth(100);
 		  schedulesTable.getColumnModel().getColumn(5).setPreferredWidth(100);
 		  schedulesTable.getColumnModel().getColumn(6).setPreferredWidth(50);
@@ -228,6 +229,10 @@ public class ServerMainView extends JFrame {
 	 } // end of display method
 
 	 // Server Main Actions
+	 public void addRouteButtonListener(ActionListener listener) {
+		  addRouteButton.addActionListener(listener);
+	 }
+
 	 public void addManageUsersButtonListener(ActionListener listener) {
 		  manageUsersButton.addActionListener(listener);
 	 }
@@ -247,6 +252,9 @@ public class ServerMainView extends JFrame {
 	 public void addLogoutButtonListener(ActionListener listener) {
 		  logoutButton.addActionListener(listener);
 	 }
+
+	 // TODO -> add Manage Buses
+	 // TODO -> add Booking Lists
 
 	 public void clearLogText() {
 		  logText.setText("");
@@ -299,4 +307,4 @@ public class ServerMainView extends JFrame {
 		  System.setOut(new PrintStream(out, true));
 		  System.setErr(new PrintStream(out, true));
 	 }
-}
+} // end of ServerMainView class

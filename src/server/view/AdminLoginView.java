@@ -3,7 +3,9 @@ package server.view;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
+@SuppressWarnings("all")
 public class AdminLoginView extends JFrame {
 	 protected JLabel usernameLabel = new JLabel("Admin Username:");
 	 protected JLabel passwordLabel = new JLabel("Admin Password:");
@@ -62,7 +64,7 @@ public class AdminLoginView extends JFrame {
 	 } // end of display method
 
 	 // Admin Login Actions
-	 public void addLoginButtonListener(java.awt.event.ActionListener listener) {
+	 public void addLoginButtonListener(ActionListener listener) {
 		  loginButton.addActionListener(listener);
 	 }
 

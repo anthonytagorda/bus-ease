@@ -4,12 +4,14 @@ import server.controller.handlers.ServerHandler;
 import server.controller.holders.ServerHolder;
 import server.controller.holders.Servant;
 import server.view.AdminLoginView;
+
 import server.view.ManageUsersView;
 import server.view.ServerMainView;
 
 import javax.swing.*;
 import java.net.ServerSocket;
 
+@SuppressWarnings("all")
 public class ServerMainController {
 	 private final ServerMainView serverMainView;
 
@@ -17,6 +19,7 @@ public class ServerMainController {
 		  this.serverMainView = serverMainView;
 
 		  // Server Main Action Listeners
+		  this.serverMainView.addRouteButtonListener(e -> addRoute());
 		  this.serverMainView.addManageUsersButtonListener(e -> manageUsers());
 		  this.serverMainView.addClearButtonListener(e -> clearLog());
 		  this.serverMainView.addStartServerButtonListener(e -> startServer());
@@ -24,8 +27,10 @@ public class ServerMainController {
 		  this.serverMainView.addLogoutButtonListener(e -> logout());
 	 } // end of ServerMainController constructor
 
+	 private void addRoute() {
+		  // TODO -> add "Add Route" view
+	 }
 	 private void manageUsers() {
-		  serverMainView.dispose();
 		  new ManageUsersView();
 	 } // end of manageUsers method
 
@@ -54,4 +59,4 @@ public class ServerMainController {
 				serverMainView.dispose();
 		  }
 	 } // end of logout method
-}
+} // end of ServerMainController class
