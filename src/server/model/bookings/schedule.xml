@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schedules>
     <schedule>
-        <plate>YAB-9910</plate>
+        <busNo>YAB-9910</busNo>
         <type>Provincial</type>
-        <departureTime>9:00 AM</departureTime>
+        <date>Jan 17 2025, Friday</date>
+        <time>2:00 PM</time>
         <origin>Baguio</origin>
-        <eta>11:00 AM</eta>
         <destination>Dagupan</destination>
+        <distance>81 KM</distance>
         <slots>50</slots>
     </schedule>
     <schedule>
-        <plate>YAB-9920</plate>
+        <busNo>YAB-9920</busNo>
         <type>Premium P2P</type>
-        <departureTime>9:00 AM</departureTime>
+        <date>Jan 17 2025, Friday</date>
+        <time>2:00 PM</time>
         <origin>Baguio</origin>
-        <eta>03:00 PM</eta>
         <destination>Cubao</destination>
+        <distance>247 KM</distance>
         <slots>50</slots>
     </schedule>
 </schedules>

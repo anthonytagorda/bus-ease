@@ -1,6 +1,5 @@
 package server.view;
 
-import server.controller.ServerMainController;
 import server.model.ScheduleModel;
 
 import javax.swing.*;
@@ -178,7 +177,7 @@ public class ServerMainView extends JFrame {
 		  schedulesPanel.add(schedulesLabel);
 
 		  // Departure Table
-		  String[] columnNames = {"Plate #", "Bus Type", "Departure Time", "Origin", "ETA", "Destination", "Slots"};
+		  String[] columnNames = {"Bus #", "Type", "Date", "Time", "Origin", "Destination", "Distance" , "Slots"};
 		  Object[][] data = ScheduleModel.loadSchedules("src/server/model/bookings/schedule.xml");
 		  schedulesTable = new JTable(data, columnNames) {
 				@Override
@@ -191,13 +190,14 @@ public class ServerMainView extends JFrame {
 		  for (int i = 0; i < columnNames.length; i++) {
 				schedulesTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		  }
-		  schedulesTable.getColumnModel().getColumn(0).setPreferredWidth(100);
-		  schedulesTable.getColumnModel().getColumn(1).setPreferredWidth(120);
-		  schedulesTable.getColumnModel().getColumn(2).setPreferredWidth(130);
-		  schedulesTable.getColumnModel().getColumn(3).setPreferredWidth(80);
-		  schedulesTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-		  schedulesTable.getColumnModel().getColumn(5).setPreferredWidth(100);
-		  schedulesTable.getColumnModel().getColumn(6).setPreferredWidth(50);
+		  schedulesTable.getColumnModel().getColumn(0).setPreferredWidth(100); // Bus No
+		  schedulesTable.getColumnModel().getColumn(1).setPreferredWidth(120); // Bus Type
+		  schedulesTable.getColumnModel().getColumn(2).setPreferredWidth(130); // Date
+		  schedulesTable.getColumnModel().getColumn(3).setPreferredWidth(80);  // Time
+		  schedulesTable.getColumnModel().getColumn(4).setPreferredWidth(100); // Origin
+		  schedulesTable.getColumnModel().getColumn(5).setPreferredWidth(100); // Destination
+		  schedulesTable.getColumnModel().getColumn(6).setPreferredWidth(50);  // Distance
+		  schedulesTable.getColumnModel().getColumn(7).setPreferredWidth(50);  // Slots
 		  schedulesTable.setFillsViewportHeight(true);
 		  JScrollPane departureScrollPane = new JScrollPane(schedulesTable);
 		  departureScrollPane.setBounds(5, 30, 505, 175);
