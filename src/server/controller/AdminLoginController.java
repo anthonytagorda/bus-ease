@@ -4,23 +4,21 @@ import server.model.AdminLoginModel;
 import server.view.AdminLoginView;
 import server.view.ServerMainView;
 
-public class AdminLoginController {
+public class AdminLoginController extends AdminLoginModel {
 	 private final AdminLoginView adminLoginView;
-	 private final AdminLoginModel adminLoginModel;
 
-	 public AdminLoginController (AdminLoginView adminLoginView, AdminLoginModel adminLoginModel) {
+	 public AdminLoginController (AdminLoginView adminLoginView) {
 		  this.adminLoginView = adminLoginView;
-		  this.adminLoginModel = adminLoginModel;
 
 		  // Admin Login Action Listeners
-		  this.adminLoginView.addLoginButtonListener(login -> login());
+		  this.adminLoginView.addLoginButtonListener(_ -> login());
 	 }
 
 	 private void login() {
 		  String username = adminLoginView.getUsername();
 		  char[] password = adminLoginView.getPassword();
 
-		  if (adminLoginModel.isValidCredentials(username, password)) {
+		  if (isValidCredentials(username, password)) {
 				// Successful Login
 				ServerMainView serverMainView = new ServerMainView();
 				new ServerMainController(serverMainView);
