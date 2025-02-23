@@ -1,10 +1,9 @@
-package server.controller.holders;
+package server.model;
 
 import java.net.ServerSocket;
 
-public class ServerHolder {
+public class ServerModel {
 	 private static ServerSocket serverSocket;
-
 	 public static void setServerSocket(ServerSocket servSocket) {
 		  serverSocket = servSocket;
 	 }
