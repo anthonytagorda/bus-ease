@@ -23,15 +23,16 @@ public class ScheduleModel {
 
 				for (int i = 0; i < nList.getLength(); i++) {
 					 Element schedule = (Element) nList.item(i);
-					 String plate = schedule.getElementsByTagName("plate").item(0).getTextContent();
+					 String busNo = schedule.getElementsByTagName("busNo").item(0).getTextContent();
 					 String type = schedule.getElementsByTagName("type").item(0).getTextContent();
-					 String departureTime = schedule.getElementsByTagName("departureTime").item(0).getTextContent();
+					 String date = schedule.getElementsByTagName("date").item(0).getTextContent();
+					 String time = schedule.getElementsByTagName("time").item(0).getTextContent();
 					 String origin = schedule.getElementsByTagName("origin").item(0).getTextContent();
-					 String eta = schedule.getElementsByTagName("eta").item(0).getTextContent();
 					 String destination = schedule.getElementsByTagName("destination").item(0).getTextContent();
+					 String distance = schedule.getElementsByTagName("distance").item(0).getTextContent();
 					 String slots = schedule.getElementsByTagName("slots").item(0).getTextContent();
 
-					 schedules.add(new Object[]{plate, type, departureTime, origin, eta, destination, slots});
+					 schedules.add(new Object[]{busNo, type, date, time, origin, destination, distance, slots});
 				}
 		  } catch (Exception e) {
 				e.printStackTrace();

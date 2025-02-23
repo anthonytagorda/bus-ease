@@ -78,15 +78,15 @@ public class ServerMainView extends JFrame {
 		  leftPanel.setBorder(primaryBorder);
 		  leftPanel.setBackground(primaryColor);
 		  leftPanel.setBounds(0,0,200,461);
-
+		  // Dashboard Logo
 		  Image dashboard_original = logo.getImage();
 		  Image dashboard_resized = dashboard_original.getScaledInstance(140, 80, Image.SCALE_SMOOTH);
 		  ImageIcon resizedLogo = new ImageIcon(dashboard_resized);
 		  JLabel logoLabel = new JLabel(resizedLogo);
 		  leftPanel.add(logoLabel);
 		  logoLabel.setBounds(20, -10, 160, 200);
-
-		  dateLabel.setBounds(35,130,150,25);
+		  // Date and Time
+		  dateLabel.setBounds(20,130,200,25);
 		  dateLabel.setForeground(bgColor);
 		  updateDate();
 		  leftPanel.add(dateLabel);
@@ -94,7 +94,7 @@ public class ServerMainView extends JFrame {
 		  timeLabel.setForeground(bgColor);
 		  startTimer();
 		  leftPanel.add(timeLabel);
-
+		  // Server Main Buttons
 		  leftPanel.add(addRouteButton);
 		  addRouteButton.setBounds(25, 180, 150, 25);
 		  addRouteButton.setBackground(Color.decode("#E7EBF7"));
@@ -117,14 +117,12 @@ public class ServerMainView extends JFrame {
 		  logoutButton.setBounds(25,420,150,25);
 		  logoutButton.setBackground(Color.decode("#E7EBF7"));
 		  add(leftPanel);
-
 		  // Main Panel
 		  JPanel mainPanel = new JPanel();
 		  mainPanel.setLayout(null);
 		  mainPanel.setBorder(primaryBorder);
 		  mainPanel.setBounds(200,0,550,500);
 		  mainPanel.setBackground(secondaryColor);
-
 		  // Available Buses Panel
 		  busPanel.setLayout(null);
 		  busPanel.setBounds(210, 10, 165, 85);
@@ -138,7 +136,6 @@ public class ServerMainView extends JFrame {
 		  busCountLabel.setFont(new Font("Roboto", Font.BOLD, 20));
 		  busPanel.add(busCountLabel);
 		  mainPanel.add(busPanel);
-
 		  // Total Tickets Sold
 		  ticketSoldPanel.setLayout(null);
 		  ticketSoldPanel.setBounds(380,10,170,85);
@@ -152,7 +149,6 @@ public class ServerMainView extends JFrame {
 		  ticketsSoldCountLabel.setFont(new Font("Roboto", Font.BOLD, 20));
 		  ticketSoldPanel.add(ticketsSoldCountLabel);
 		  mainPanel.add(ticketSoldPanel);
-
 		  // Pending Refunds
 		  refundPanel.setLayout(null);
 		  refundPanel.setBounds(555,10,170,85);
@@ -166,7 +162,6 @@ public class ServerMainView extends JFrame {
 		  refundCountLabel.setFont(new Font("Roboto", Font.BOLD, 20));
 		  refundPanel.add(refundCountLabel);
 		  mainPanel.add(refundPanel);
-
 		  // Departures Log
 		  schedulesPanel.setLayout(null);
 		  schedulesPanel.setBounds(210,100,515,210);
@@ -175,7 +170,6 @@ public class ServerMainView extends JFrame {
 		  schedulesLabel.setBounds(5,5,150,25);
 		  schedulesLabel.setFont(new Font("Roboto", Font.BOLD, 16));
 		  schedulesPanel.add(schedulesLabel);
-
 		  // Departure Table
 		  String[] columnNames = {"Bus #", "Type", "Date", "Time", "Origin", "Destination", "Distance" , "Slots"};
 		  Object[][] data = ScheduleModel.loadSchedules("src/server/model/bookings/schedule.xml");
@@ -190,15 +184,16 @@ public class ServerMainView extends JFrame {
 		  for (int i = 0; i < columnNames.length; i++) {
 				schedulesTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		  }
-		  schedulesTable.getColumnModel().getColumn(0).setPreferredWidth(100); // Bus No
+		  schedulesTable.getColumnModel().getColumn(0).setPreferredWidth(90); // Bus No
 		  schedulesTable.getColumnModel().getColumn(1).setPreferredWidth(120); // Bus Type
-		  schedulesTable.getColumnModel().getColumn(2).setPreferredWidth(130); // Date
+		  schedulesTable.getColumnModel().getColumn(2).setPreferredWidth(120); // Date
 		  schedulesTable.getColumnModel().getColumn(3).setPreferredWidth(80);  // Time
 		  schedulesTable.getColumnModel().getColumn(4).setPreferredWidth(100); // Origin
 		  schedulesTable.getColumnModel().getColumn(5).setPreferredWidth(100); // Destination
-		  schedulesTable.getColumnModel().getColumn(6).setPreferredWidth(50);  // Distance
+		  schedulesTable.getColumnModel().getColumn(6).setPreferredWidth(80);  // Distance
 		  schedulesTable.getColumnModel().getColumn(7).setPreferredWidth(50);  // Slots
 		  schedulesTable.setFillsViewportHeight(true);
+
 		  JScrollPane departureScrollPane = new JScrollPane(schedulesTable);
 		  departureScrollPane.setBounds(5, 30, 505, 175);
 		  departureScrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -302,7 +297,6 @@ public class ServerMainView extends JFrame {
 					 write(b, 0, b.length);
 				}
 		  };
-
 		  // Redirect standard output to the custom OutputStream
 		  System.setOut(new PrintStream(out, true));
 		  System.setErr(new PrintStream(out, true));
