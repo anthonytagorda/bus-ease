@@ -25,7 +25,7 @@ public class Passenger implements Serializable {
 	 private String name;
 	 private String password;
 
-	 public Passenger (int id, String type, String status, String username, String password, String name, boolean isBanned) {
+	 public Passenger (int id, boolean isBanned, String type, String status, String username, String password, String name) {
 		  this.id = id;
 		  this.isBanned = isBanned;
 		  this.type = type;
@@ -39,16 +39,8 @@ public class Passenger implements Serializable {
 		  return id;
 	 }
 
-	 public void setId (int id) {
-		  this.id = id;
-	 }
-
 	 public boolean isBanned ( ) {
 		  return isBanned;
-	 }
-
-	 public void setBanned (boolean banned) {
-		  isBanned = banned;
 	 }
 
 	 public String getType ( ) {
@@ -79,8 +71,24 @@ public class Passenger implements Serializable {
 		  this.password = password;
 	 }
 
+	 public String getStatus ( ) {
+		  return status;
+	 }
+
+	 public Map<String, String> toMap() {
+		  Map<String, String> passengerMap = new HashMap<>();
+		  	passengerMap.put("id", String.valueOf(id));
+		  	passengerMap.put("isBanned", String.valueOf(isBanned));
+		  	passengerMap.put("type", type);
+		  	passengerMap.put("status", status);
+		  	passengerMap.put("username", username);
+		  	passengerMap.put("name", name);
+		  	passengerMap.put("password", password);
+		  return passengerMap;
+	 }
+
 	 public static List<Passenger> parseCredentials(String filePath) {
-		  List<Passenger> passengers = new ArrayList<>();
+		  List<Passenger> passengerList = new ArrayList<>();
 
 		  try {
 				File xmlFile = new File(filePath);
@@ -101,12 +109,12 @@ public class Passenger implements Serializable {
 					 String name = passengerElement.getElementsByTagName("name").item(0).getTextContent();
 					 String password = passengerElement.getElementsByTagName("password").item(0).getTextContent();
 
-					 Passenger passenger = new Passenger(id, type, status, username, password, name, banned);
-					 passengers.add(passenger);
+					 Passenger passenger = new Passenger(id, banned, type, status, username, password, name);
+					 passengerList.add(passenger);
 				}
 		  } catch (ParserConfigurationException | IOException | SAXException e) {
 				throw new RuntimeException(e);
 		  }
-		  return passengers;
+		  return passengerList;
 	 }
 }

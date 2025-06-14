@@ -1,10 +1,10 @@
 <passengers>
-    <passenger isBanned="false" id="1" type="regular" status="offline">
+    <passenger id="1" type="regular" status="offline" isBanned="false">
         <username>pass1</username>
         <name>Passenger One</name>
         <password>123</password>
     </passenger>
-    <passenger isBanned="false" id="2" type="student" status="online">
+    <passenger id="2" type="student" status="offline" isBanned="true">
         <username>pass2</username>
         <name>Passenger Two</name>
         <password>123</password>

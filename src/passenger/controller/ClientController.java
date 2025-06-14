@@ -27,7 +27,7 @@ public class ClientController {
 		  initiateStream();
 	 }
 
-	 private void initiateStream() {
+	 private void initiateStream ( ) {
 		  try {
 				writer = new ObjectOutputStream(socket.getOutputStream());
 				reader = new ObjectInputStream(socket.getInputStream());
@@ -39,18 +39,18 @@ public class ClientController {
 
 				// Test 2: Receive a response
 				Object reply = reader.readObject();
-				System.out.printf("Received from server: %s%n", reply);
+				System.out.printf("Received from server: %s\n%n", reply);
 
 				JFrame authFrame = new JFrame();
 				showAuthView(authFrame);
 
-				Thread clientThread = new Thread(() -> {
+				Thread clientThread = new Thread(( ) -> {
 					 try {
 						  boolean closeFlag = true;
 
 						  while (closeFlag) {
 								// Read Response from the server
-								Map <String, String> input = (Map<String, String>) reader.readObject();
+								Map<String, String> input = (Map<String, String>) reader.readObject();
 
 								// Process the response (update UI, perform actions, etc.)
 								System.out.printf("Received from server: %s%n", input);
@@ -62,13 +62,14 @@ public class ClientController {
 										  if ( result ) {
 												loginView.showValidLoginDialog();
 												passengerDetails.putAll(input);
+												showDashboardView(passengerDetails.get("username"));
 										  } else {
 												loginView.showInvalidLoginDialog(msg);
 										  }
 									 }
 									 case "register" -> {
 										  String[] registerResponse = msg.split(":");
-										  if (Boolean.valueOf(registerResponse[0])) {
+										  if ( Boolean.valueOf(registerResponse[0]) ) {
 												registerView.showValidRegisterDialog(registerResponse[1]);
 										  } else {
 												registerView.showInvalidRegisterDialog(registerResponse[1]);
@@ -91,21 +92,25 @@ public class ClientController {
 					 } catch (IOException | ClassNotFoundException e) {
 						  authFrame.dispose();
 						  System.err.println("Server stopped");
+					 } finally {
+						  try {
+								reader.close();
+								writer.close();
+								socket.close();
+						  } catch (IOException e) {
+								e.printStackTrace();
+						  }
 					 }
 				});
 				clientThread.start();
 				// end of clientThread
 		  } catch (IOException | ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(
-						  null,
-						  "Server is not available.",
-						  "Error 504",
-						  JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Server is not available.", "Error 504", JOptionPane.ERROR_MESSAGE);
 				System.err.println("Server is not running");
 		  }
 	 } // end of initiateStream method
 
-	 public void sendToServer(Object object) {
+	 public void sendToServer (Object object) {
 		  try {
 				writer.writeObject(object);
 				writer.flush();
@@ -114,14 +119,14 @@ public class ClientController {
 		  }
 	 } // end of sendToServer method
 
-	 public Map<String, String> formatMessage(String messType, String message) {
-		  Map<String, String> messages = new HashMap<>();
-		  messages.put("messType", messType);
-		  messages.put("value", message);
-		  return messages;
+	 public Map<String, String> formatMessage (String messType, String message) {
+		  Map<String, String> obj = new HashMap<>();
+		  obj.put("messType", messType);
+		  obj.put("value", message);
+		  return obj;
 	 } // end of formatMessage method
 
-	 private void showAuthView(JFrame authFrame) {
+	 private void showAuthView (JFrame authFrame) {
 		  authFrame.setTitle("Bus Ease | Passenger Authentication");
 		  authFrame.setSize(960, 540);
 		  authFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,8 +141,8 @@ public class ClientController {
 		  loginView = new LoginView(authPanel, authLayout);
 		  registerView = new RegisterView(authPanel, authLayout);
 
-		  authPanel.add(loginView,"Login");
-		  authPanel.add(registerView,"Register");
+		  authPanel.add(loginView, "Login");
+		  authPanel.add(registerView, "Register");
 
 		  authLayout.show(authPanel, "Login"); // Default Panel
 
@@ -149,33 +154,27 @@ public class ClientController {
 				String username = loginView.getUsernameInput();
 				char[] password = loginView.getPasswordInput();
 
-				sendToServer(formatMessage(
-								"auth",
-								String.format("%s:::%s:::%s",
-												  "passenger",
-												  username,
-												  new String(password)
-								)
-				));
+				sendToServer(formatMessage("auth", String.format("%s:::%s:::%s", "passenger", username, new String(password))));
 		  }); // login button
 
 		  JButton registerButton = registerView.getRegisterButton();
 		  registerButton.addActionListener(_ -> {
-				if (registerView.validateInput()) {
+				if ( registerView.validateInput() ) {
 					 String username = registerView.getUsernameInput();
 					 String name = registerView.getNameInput();
 					 String password = new String(registerView.getPasswordInput());
-					 sendToServer(formatMessage(
-								"register",
-								String.format(
-										  "%s:::%s:::%s:::%s:::%s",
-										  "passenger",
-										  name,
-										  username,
-										  password
-								)
-					 ));
+					 sendToServer(formatMessage("register", String.format("%s:::%s:::%s:::%s:::%s", "passenger", name, username, password)));
 				}
 		  }); // register button
 	 } // end of showAuthView
+
+	 private void showDashboardView (String loggedInUser) {
+		  JFrame dbFrame = new JFrame("Bus Ease | Passenger Dashboard");
+		  dbFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  dbFrame.setSize(1200, 700);
+		  dbFrame.setResizable(false);
+		  dbFrame.setLocationRelativeTo(null);
+
+		  dbFrame.setVisible(true);
+	 }
 } // end of ClientController class
