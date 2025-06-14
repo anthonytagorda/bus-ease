@@ -19,7 +19,7 @@ public class AdminLoginModel {
 				ClassLoader classLoader = getClass().getClassLoader();
 				InputStream inputStream = classLoader.getResourceAsStream("server/model/users/admin.xml");
 
-				// Check if the InputStream is null
+				// Check if the InputStream is null or if File path is correct
 				if (inputStream == null) {
 					 System.err.println("Error: InputStream is null. Check if the XML file exists at the specified path.");
 					 return false;
@@ -29,6 +29,7 @@ public class AdminLoginModel {
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 				Document doc = dBuilder.parse(inputStream);
 							doc.getDocumentElement().normalize();
+
 				NodeList adminNodes = doc.getElementsByTagName("admin");
 				for (int i = 0; i < adminNodes.getLength(); i++) {
 					 Node node = adminNodes.item(i);

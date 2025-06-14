@@ -86,7 +86,7 @@ public class ServerMainView extends JFrame {
 		  leftPanel.add(logoLabel);
 		  logoLabel.setBounds(20, -10, 160, 200);
 		  // Date and Time
-		  dateLabel.setBounds(20,130,200,25);
+		  dateLabel.setBounds(30,130,200,25);
 		  dateLabel.setForeground(bgColor);
 		  updateDate();
 		  leftPanel.add(dateLabel);
