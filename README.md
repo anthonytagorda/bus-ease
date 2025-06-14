@@ -1,6 +1,5 @@
-# Bus Ease 🚌🎫 - Java Bus Ticketing System 
+# Bus Ease 🚌🎫 - Java Bus Ticketing System (Java Sockets)
 
-### Logo 
 <img src=src/public/images/bus_ease_logo.png>
 
 ### Programmer: [Anthony I. Tagorda](https://github.com/anthonytagorda)
