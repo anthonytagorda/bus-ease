@@ -1,6 +1,7 @@
-package server.controller.handlers;
+package server.controller.servant;
 
-import server.controller.holders.ServerHolder;
+import server.controller.ServerController;
+import server.model.ServerModel;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -11,23 +12,27 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerHandler {
+public class Servant extends SwingWorker<Void, Void> {
 	 private static final int PORT = 6969;
 	 private static boolean isServerRunning =	false;
 
 	 private static final List<PrintWriter> clientWriters = new ArrayList<>();
-	 private static final List<ClientHandler> connectedClients = new ArrayList<>();
+	 private static final List<ServerController> connectedClients = new ArrayList<>();
 
 	 public static void startServer() {
 		  if ( isServerRunning ) {
-				JOptionPane.showMessageDialog(null, "Server is already running", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(
+						  null,
+						  "Server is already running",
+						  "Error",
+						  JOptionPane.ERROR_MESSAGE);
 				return;
 		  }
 
 		  try {
 				ServerSocket serverSocket = new ServerSocket(PORT);
 				InetAddress localhost = InetAddress.getLocalHost();
-				ServerHolder.setServerSocket(serverSocket);
+				ServerModel.setServerSocket(serverSocket);
 				isServerRunning = true;
 
 				System.out.printf("Server started on %s%n", localhost);
@@ -38,11 +43,12 @@ public class ServerHandler {
 				while (isServerRunning) {
 					 Socket clientSocket = serverSocket.accept();
 
-					 System.out.printf("Client connected: %s%n", clientSocket);
+					 System.out.printf("Client connected: %s%n", clientSocket.getInetAddress());
 
 					 // Create a PrintWriter for the client and add it to the	 list
 					 PrintWriter clientWriter = new PrintWriter(clientSocket.getOutputStream(), true);
 					 clientWriters.add(clientWriter);
+					 new ServerController(clientSocket);
 				}
 		  } catch (IOException e) {
 				isServerRunning = false;
@@ -51,7 +57,7 @@ public class ServerHandler {
 						  "Server stopped.",
 						  "Stop",
 						  JOptionPane.ERROR_MESSAGE);
-				System.out.println("Server stopped.");
+				System.out.println("Server halted.");
 		  }
 	 } // end of startServer method
 
@@ -62,9 +68,9 @@ public class ServerHandler {
 					 writer.println("Server has been shutdown.");
 				}
 
-				// Set the serverShutdown flag for each PassengerHandler
-				for(ClientHandler clientHandler : connectedClients) {
-					 clientHandler.setServerShutdown(true);
+				// Set the serverShutdown flag for each PassengerController
+				for(ServerController serverController : connectedClients) {
+					 serverController.setServerShutdown(true);
 				}
 
 				serverSocket.close();
@@ -78,4 +84,9 @@ public class ServerHandler {
 		  }
 	 } // end of stopServer method
 
-} // end of ServerHandler class
+	 @Override
+	 protected Void doInBackground ( ) throws Exception {
+		  startServer();
+		  return null;
+	 }
+} // end of Servant class
