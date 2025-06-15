@@ -1,5 +1,6 @@
 package passenger.controller;
 
+import passenger.view.DashboardView;
 import passenger.view.LoginView;
 import passenger.view.RegisterView;
 
@@ -169,12 +170,11 @@ public class ClientController {
 	 } // end of showAuthView
 
 	 private void showDashboardView (String loggedInUser) {
-		  JFrame dbFrame = new JFrame("Bus Ease | Passenger Dashboard");
-		  dbFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		  dbFrame.setSize(1200, 700);
-		  dbFrame.setResizable(false);
-		  dbFrame.setLocationRelativeTo(null);
+		  DashboardView dashboardView = new DashboardView();
 
-		  dbFrame.setVisible(true);
-	 }
+		  // TODO: Add Passenger Dashboard Functions
+		  dashboardView.addBookTripButtonListener(e -> {
+
+		  });
+	 } // end of showAuthView method
 } // end of ClientController class
