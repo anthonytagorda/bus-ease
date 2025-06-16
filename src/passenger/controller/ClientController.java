@@ -1,8 +1,11 @@
 package passenger.controller;
 
+import passenger.Client;
 import passenger.view.DashboardView;
 import passenger.view.LoginView;
 import passenger.view.RegisterView;
+import server.controller.AdminLoginController;
+import server.view.AdminLoginView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -174,7 +177,25 @@ public class ClientController {
 
 		  // TODO: Add Passenger Dashboard Functions
 		  dashboardView.addBookTripButtonListener(e -> {
+		  });
+		  dashboardView.addEditProfileButtonListener(e -> {
 
+		  });
+		  dashboardView.addLogoutButtonListener(e-> {
+				ImageIcon logoutIcon = new ImageIcon("src/public/icons/logout.png");
+				Image logoutIcon_original = logoutIcon.getImage();
+				Image logoutIcon_resized = logoutIcon_original.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+				ImageIcon resizedLogoutCustomIcon = new ImageIcon(logoutIcon_resized);
+				int logout = JOptionPane.showConfirmDialog(dashboardView,
+																		 " Are you sure you want to logout?",
+																		 "Logout?",
+																		 JOptionPane.YES_NO_OPTION,
+																		 JOptionPane.QUESTION_MESSAGE,
+																		 resizedLogoutCustomIcon);
+				if (logout == JOptionPane.YES_OPTION) {
+					 dashboardView.dispose();
+					 Client.main(new String[0]);
+				}
 		  });
 	 } // end of showAuthView method
 } // end of ClientController class
